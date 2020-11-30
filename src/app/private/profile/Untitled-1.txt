@@ -1,0 +1,15 @@
+<div class="sign-in-modal" data-sign-modal>
+  <div class="sign-in-modal-block">
+    <div class="close text-right"><span data-sign-close>×</span></div>
+    <h2>Войти на сайт</h2>
+    <div class="form--group">
+      {{ResultLogin}}
+      <div class="status-login">
+          <p>Ошибка</p>
+      </div>
+      <input id="email" type="email" name="email" class="input" placeholder="E-mail" [(ngModel)]="user.email" required email>
+      <input id="password" type="password" name="txtPassword" class="input" placeholder="Пароль" [(ngModel)]="user.password" (keydown)=passwordComplexity()>
+      <button class="button blue basic-button" (click)="login()"><span>Войти на сайт</span></button>
+    </div>
+  </div>
+</div>

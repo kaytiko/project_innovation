@@ -1,0 +1,49 @@
+<section class="basic-form st-p dot-bl">
+    <div class="row">
+      <div class="columns small-12 text-center wow fadeInUp" data-wow-delay=".2s">
+        <h2>Регистрация</h2>
+      </div>
+    </div>
+    <form (ngSubmit)="processForm()">
+      <div class="row mg-bt wow fadeInUp" data-wow-delay=".3s">
+        <div class="columns medium-5 small-centered small-12 text-left">
+          <div class="form--group">
+            <label for="name">Ваше имя</label>
+            <input id="name" type="text" name="name" class="input" placeholder="Дмитрий Борисович" [(ngModel)]="name" required minlength="3" #nameInput="ngModel">
+            <div class="help is-error" *ngIf="nameInput.invalid && nameInput.dirty">
+                <p>Имя пользователя не корректно введено</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mg-bt wow fadeInUp" data-wow-delay=".4s">
+        <div class="columns medium-5 small-centered small-12 text-left">
+          <div class="form--group">
+            <label for="phone">Номер телефона</label>
+            <input id="phone" type="text" name="phone" class="input" placeholder="+7 (904) - 444 - 4444" [(ngModel)]="phone" required phone #phoneInput="ngModel">
+            <div class="help is-error" *ngIf="phoneInput.invalid && phoneInput.dirty">
+                <p>Введите номер телефона</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp" data-wow-delay=".4s">
+        <div class="columns medium-5 small-centered small-12 text-left">
+          <div class="form--group">
+            <label for="email">Электронная почта</label>
+            <input id="email" type="email" name="email" class="input" placeholder="E-mail или телефон" [(ngModel)]="email" required email #emailInput="ngModel">
+            <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+                <p>Needs to be a valid email.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp" data-wow-delay=".5s">
+        <div class="columns small-12 text-center">
+          <button type="submit" class="button blue" [disabled]="nameInput.invalid && nameInput.dirty || emailInput.invalid && emailInput.dirty">Отправить заявку</button>
+          <p class="small">Отправляя информацию вы соглашаетесь <span>на обработку персональных данных в соответствии с политикой конфиденциальности</span></p>
+        </div>
+      </div>
+    </form>
+  </section>
+  

@@ -1,0 +1,234 @@
+<app-menu></app-menu>
+<div class="basic-form profile">
+    <div class="row">
+        <div class="column small-12">
+            <div class="profile-block">
+                <div class="row">
+                    <div class="column small-12 text-left">
+                        <h2>Профиль</h2>
+                    </div>
+                    <div class="column medium-6 text-left end">
+                        <div class="form--group" style="display:none;">  
+                            <label>Идентификатор пользователя</label>
+                            <input value="ID" disabled/>
+                            <!--<input type="hidden" value="{{additionalInformation.UserId}}" />-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column small-12 text-left">
+                        <div class="profile-block--status">
+                            <table>
+                                <tr>
+                                    <td><p class="status-title">Статус:</p></td>
+                                    <td><p class="active">Активен</p></td>
+                                    <!--<td *ngIf="additionalInformation.active">Активен</td>
+                                    <td *ngIf="!additionalInformation.active" class="not-active">Не активен</td>-->
+                                </tr>
+                                <tr>
+                                    <td><p class="status-title">Роль:</p></td>
+                                    <td><p>Пользователь</p></td>
+                                    <!--<td *ngIf="additionalInformation.type==1">Пользователь</td>
+                                    <td *ngIf="additionalInformation.type==0">Администратор</td>-->
+                                </tr>
+                                <tr>
+                                    <td><p class="status-title">Дата создания:</p></td>
+                                    <td><p>{{additionalInformation.dateCreate | date:'dd.MM.yyyy hh:mm'}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="status-title">Дата обновления:</p></td>
+                                    <td><p>{{additionalInformation.dateUpdate | date:'dd.MM.yyyy hh:mm'}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="status-title">Последний вход:</p></td>
+                                    <td><p>{{additionalInformation.dateLastLogin | date:'dd.MM.yyyy hh:mm'}}</p></td>
+                                </tr>
+                            </table>     
+                        </div>
+                    </div>
+                    <div class="column medium-6 text-left">
+                        <div class="form--group">
+                            <label>Фамилия</label>
+                            <input type="text" *ngIf="!readOnly" [(ngModel)]="additionalInformation.lastName" class="form-control" required />
+                            <span *ngIf="readOnly">{{additionalInformation.lastName}}</span>
+                        </div>
+                    </div>
+                    <div class="column medium-6 text-left">
+                        <div class="form--group">
+                            <label>Имя</label>
+                            <input type="text" *ngIf="!readOnly" [(ngModel)]="additionalInformation.firstName" class="form-control" required />
+                            <span *ngIf="readOnly">{{additionalInformation.firstName}}</span>
+                        </div>
+                    </div>
+                    <div class="column medium-6 text-left">
+                        <div class="form--group">
+                            <label>Отчество</label>
+                            <input type="text" *ngIf="!readOnly" [(ngModel)]="additionalInformation.secondName" class="form-control" required />
+                            <span *ngIf="readOnly">{{additionalInformation.secondName}}</span>
+                        </div>
+                    </div>
+                    <div class="column medium-6 text-left">
+                        <div class="form--group">
+                            <label>Дата рождения</label>
+                            <input type="date" *ngIf="!readOnly" #myDate [value]="additionalInformation.birthday | date:'yyyy-MM-dd'" (input)="additionalInformation.birthday=parseDate($event.target.value)" class="form-control" required />
+                            <span *ngIf="readOnly">{{additionalInformation.birthday | date:'yyyy-MM-dd'}}</span>
+                        </div>
+                    </div>
+                    <div class="column small-12 text-left">
+                        <div class="form--group">  
+                            <label>Email</label>
+                            <input type="text" value="email@gmail.com" *ngIf="!readOnly" class="form-control"/>
+                        </div>
+                        <!--<td>{{additionalInformation.email}}</td>-->
+                        <button class="button blue basic-button" (click)="updateAdditionalInformation()" *ngIf="!readOnly">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-block education">
+                        <h2>Образование</h2>
+                        <input type="button" value="Добавить" class="button blue basic-button" (click)="addEducation()" *ngIf="!readOnly" />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td style="display:none;">userEducationId</td>
+                                    <td>Университет</td>
+                                    <td>Профессия</td>
+                                    <td>Год окончания</td>
+                                    <td style="display:none;">Добавлено</td>
+                                    <td style="display:none;">Обновлено</td>
+                                    <td *ngIf="!readOnly"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td style="display:none;">4</td>
+                                        <td style="display:none;">5</td>
+                                        <td style="display:none;">6</td>
+                                        <td *ngIf="!readOnly">
+                                            <button class="btn btn-sm btn-primary" (click)="editEducation(p)"><i class="fas fa-pencil-alt"></i></button>
+                                            <button class="btn btn-sm btn-danger" (click)="deleteEducation(p)"><i class="far fa-trash-alt"></i></button>
+                                        </td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--шаблон для редактирования-->
+                        <ng-template #editE>
+                            <td style="display:none;">
+                                <input type="text" [(ngModel)]="education.userEducationId" class="form-control" required />
+                            </td>
+                            <td>
+                                <input type="text" [(ngModel)]="education.university" class="form-control" required />
+                            </td>
+                            <td>
+                                <input type="text" [(ngModel)]="education.profession" class="form-control" required />
+                            </td>
+                            <td>
+                                <input type="number" min="1900" max="2155" [(ngModel)]="education.end_year" class="form-control" required />
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td *ngIf="!readOnly">
+                                <input type="button" value="Сохранить" (click)="saveEducation()" class="btn btn-sm btn-success" />
+                                <input type="button" value="Отмена" (click)="cancelEducation()" class="btn btn-sm btn-warning" />
+                            </td>
+                        </ng-template>
+                        <!--шаблон для добавления-->
+                        <ng-template #createE>
+                            <div class="form-group">
+                                <label>Университет</label>
+                                <input type="text" [(ngModel)]="education.university" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Профессия</label>
+                                <input type="text" [(ngModel)]="education.profession" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Год окончания</label>
+                                <input type="number" [(ngModel)]="education.end_year" class="form-control" required min="1900" max="2155" />
+                            </div>
+                            <div *ngIf="!readOnly">
+                                <input type="button" value="Сохранить" (click)="saveEducation()" class="btn btn-success" />
+                                <input type="button" value="Отмена" (click)="cancelEducation()" class="btn btn-warning" />
+                            </div>
+                        </ng-template>
+            </div>
+            <div class="profile-block contact">
+                        <h2>Контакты</h2>
+                        <input type="button" value="Добавить" class="button blue basic-button" (click)="addContact()" *ngIf="!readOnly" />
+                        <table *ngIf="tableModeContact; else createC" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td style="display:none;">userContactId</td>
+                                    <td>Контакт</td>
+                                    <td>Значение</td>
+                                    <td>Добавлено</td>
+                                    <td>Обновлено</td>
+                                    <td *ngIf="!readOnly"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let p of contacts">
+                                    <ng-template [ngIf]="contact?.userContactId != p.userContactId" [ngIfElse]="editC">
+                                        <td style="display:none;">{{p?.userContactId}}</td>
+                                        <td>{{p?.userContactType.name}}</td>
+                                        <td>{{p?.value}}</td>
+                                        <td>{{p?.dateCreate | date:'dd.MM.yyyy hh:mm'}}</td>
+                                        <td>{{p?.dateUpdate | date:'dd.MM.yyyy hh:mm'}}</td>
+                                        <td *ngIf="!readOnly">
+                                            <button class="btn btn-sm btn-primary" (click)="editContact(p)">Изменить</button>
+                                            <button class="btn btn-sm btn-danger" (click)="deleteContact(p)">Удалить</button>
+                                        </td>
+                                    </ng-template>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--шаблон для редактирования-->
+                        <ng-template #editC>
+                            <td style="display:none;">
+                                <input type="text" [(ngModel)]="contact.userContactId" class="form-control" required />
+                            </td>
+                            <td>
+                                <select [(ngModel)]="contact.userContactType.userContactTypeId" class="form-control" required>
+                                    <option *ngFor="let p of contactTypes" value="{{p?.userContactTypeId}}">
+                                        {{p?.name}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" [(ngModel)]="contact.value" class="form-control" required />
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td *ngIf="!readOnly">
+                                <input type="button" value="Сохранить" (click)="saveContact()" class="btn btn-sm btn-success" />
+                                <input type="button" value="Отмена" (click)="cancelContact()" class="btn btn-sm btn-warning" />
+                            </td>
+                        </ng-template>
+                        <!--шаблон для добавления-->
+                        <ng-template #createC>
+                            <div class="form--group">
+                                <label>Тип</label>
+                                <select [(ngModel)]="contact.userContactType.userContactTypeId" class="form-control" required>
+                                    <option *ngFor="let p of contactTypes" value="{{p?.userContactTypeId}}">
+                                        {{p?.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form--group">
+                                <label>Значение</label>
+                                <input type="text" [(ngModel)]="contact.value" class="form-control" required />
+                            </div>
+                            <div *ngIf="!readOnly">
+                                <input type="button" value="Сохранить" (click)="saveContact()" class="btn btn-success" />
+                                <input type="button" value="Отмена" (click)="cancelContact()" class="btn btn-warning" />
+                            </div>
+                        </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

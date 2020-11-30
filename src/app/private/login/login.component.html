@@ -1,0 +1,85 @@
+<section class="mini-header flex a-items-center j-between">
+  <div class="mini-header--logo">
+    <a routerLink="/">
+      <img src="assets/img/logo-icon-blue.svg">
+      <img src="assets/img/logo-text.svg">
+    </a>
+  </div>
+  <div class="mini-header--nav">
+    <ul>
+      <li>
+        <a routerLink="/">Главная</a>
+      </li>
+      <li>
+        <a routerLink="/planners">Проектировщикам</a>
+      </li>
+      <li>
+        <a routerLink="/innovators">Инноваторам</a>
+      </li>
+    </ul>
+  </div>
+  <div class="mini-header--button">
+      <button (click)="login()" class="button blue basic-button"><i class="fas fa-lock"></i><span>Войти на сайт</span></button>
+  </div>
+</section>
+<section class="registration basic-form dot-bl">
+  <div class="row">
+      <div class="columns small-12 text-center wow fadeInUp">
+          <h2>{{ Result }}&nbsp;</h2>
+      </div>
+  </div>
+  <div class="row">
+      <div class="columns small-12 text-center wow fadeInUp" data-wow-delay=".2s">
+          <h2>Авторизация</h2>
+      </div>
+  </div>
+  <div>
+      <div class="row mg-bt wow fadeInUp" data-wow-delay=".3s">
+          <div class="columns medium-5 small-centered small-12 text-left">
+              <div class="form--group">
+                <div class="checkbox">
+                  <input type="radio" id="log" name="options" [(ngModel)]="user.type" [value]=0 />
+                  <label for="log">Login </label>
+                </div>
+                <div class="checkbox">
+                  <input type="radio" id="reg" name="options" [(ngModel)]="user.type" [value]=1 />
+                  <label for="reg">Registration</label>
+                </div>  
+              </div>
+          </div>
+      </div>
+      <div class="row wow fadeInUp" data-wow-delay=".4s">
+          <div class="columns medium-5 small-centered small-12 text-left">
+              <div class="form--group">
+                  <label for="email">Электронная почта</label>
+                  <input id="email" type="email" name="email" class="input" placeholder="E-mail" [(ngModel)]="user.email" required email #emailInput="ngModel">
+                  <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+                      <p>Введите электронную почту</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row mg-bt wow fadeInUp" data-wow-delay=".5s">
+          <div class="columns medium-5 small-centered small-12 text-left">
+              <div class="form--group">
+                  <label for="password">Пароль<span>{{passwordText}}</span></label>
+                  <input id="password" type="password" name="txtPassword" class="input" placeholder="Пароль" [(ngModel)]="user.password" (keydown)=passwordComplexity()>
+              </div>
+          </div>
+      </div>
+      <div class="row mg-bt wow" *ngIf="user.type == 1">
+          <div class="columns medium-5 small-centered small-12 text-left">
+              <div class="form--group">
+                  <label for="password2">Повторите ввод пароля</label>
+                  <input id="password2" type="password" name="password2" class="input" placeholder="Пароль" [(ngModel)]="user.password2">
+              </div>
+          </div>
+      </div>
+      <div class="row wow fadeInUp" data-wow-delay=".6s">
+          <div class="columns small-12 text-center">
+              <input type="button" value='{{user.type == 1 ? "Отправить заявку" : "Войти"}}' (click)="login()" class="button blue basic-button" [disabled]="IsDisabled" />
+              <p class="small">Отправляя информацию вы соглашаетесь <span>на обработку персональных данных в соответствии с политикой конфиденциальности</span></p>
+          </div>
+      </div>
+  </div>
+</section>

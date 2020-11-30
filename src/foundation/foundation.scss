@@ -1,0 +1,42 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+$foundation-version: '6.0.0-alpha.1';
+
+// Third-party libraries
+@import 'vendor/normalize';
+
+// Sass utilities
+@import 'util/util';
+
+
+// Global variables and styles
+@import 'global';
+@import 'settings';
+
+// Components
+@import 'grid/grid';
+@import 'typography/typography';
+@import 'forms/forms';
+@import 'components/visibility';
+@import 'components/float';
+@import 'components/sticky';
+@import 'components/accordion';
+@import 'components/switch';
+@import 'components/button';
+// These styles are applied to <meta> tags, which are read by the Foundation JavaScript
+.foundation-mq {
+  font-family: "#{-zf-bp-serialize($breakpoints)}";
+}
+
+@include foundation-global-styles;
+@include foundation-forms;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-sticky;
+@include foundation-accordion;
+@include foundation-switch;
+@include foundation-button;

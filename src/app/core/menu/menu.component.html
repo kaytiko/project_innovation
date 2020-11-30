@@ -1,0 +1,39 @@
+<div class="head-block--menu" style="display:none;">
+    <ul class="list-unstyled">
+        <li><a data-sign-in>Войти на сайт</a></li>
+        <li><a routerLink="/login">Регистрация</a></li>
+    </ul>
+</div>
+<section class="mini-header flex a-items-center j-between" style="display:none;">
+  <div class="mini-header--logo">
+      <a routerLink="/">
+          <img src="/assets/img/logo-text.svg">
+      </a>
+  </div>
+  <div class="mini-header--nav">
+      <ul>
+          <li>
+              <a routerLink="/">Главная</a>
+          </li>
+          <li>
+              <a routerLink="/planners">Проектировщикам</a>
+          </li>
+          <li>
+              <a routerLink="/innovators">Инноваторам</a>
+          </li>
+          <li *ngIf="isNotLogin()">
+              <a routerLink="/login">Регистрация</a>
+          </li>
+          <li>
+                <a routerLink="/users">Пользователи</a>
+          </li>
+          <li>
+                <a routerLink="/profile">Профиль</a>
+          </li>
+      </ul>
+  </div>
+  <div class="mini-header--button">
+        <a>doroganovv@mail.ru</a>
+        <button (click)="logout()" class="button blue basic-button close"><span>Выход</span></button>
+  </div>
+</section>
